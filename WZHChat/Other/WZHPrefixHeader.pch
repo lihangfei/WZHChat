@@ -1,0 +1,114 @@
+//
+//  WZHPrefixHeader.pch
+//  WZHChat
+//
+//  Created by 吳梓杭 on 2017/10/18.
+//  Copyright © 2017年 吳梓杭. All rights reserved.
+//  
+
+#ifndef WZHPrefixHeader_pch
+#define WZHPrefixHeader_pch
+
+//添加userDefault值
+#define SetUserValue(A,B)     [[NSUserDefaults standardUserDefaults] setValue:A forKey:B]
+//获取UserDefault的值
+#define GetUserValue(A)  [[NSUserDefaults standardUserDefaults] valueForKey:A]
+
+#define StatusBar_Height [[UIApplication sharedApplication] statusBarFrame].size.height  //状态栏高度
+//#define screenH [UIScreen mainScreen].bounds.size.height
+#define UIFONT_SIZE [UIFont systemFontOfSize:14]
+#define IPHONE_WIDTH [UIScreen mainScreen].bounds.size.width
+#define IPHONE_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define ScaleX_Num IPHONE_WIDTH/320
+#define ScaleY_Num IPHONE_HEIGHT/568
+#define HEXCOLOR(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0 blue:((float)(rgbValue & 0xFF)) / 255.0 alpha:1.0]
+#define PLACEHOLD [UIImage imageNamed:@""]    //默认图片
+#define FORMAT(fmt,...)[NSString stringWithFormat:fmt,##__VA_ARGS__]
+
+#define TAB_HEIGHT  (StatusBar_Height + 64)
+#define NAV_HEIGHT  (StatusBar_Height + 44)
+#define STATUS_HEIGHT       20
+
+#define AdapterX(width) (width*ScaleX_Num)
+#define AdapterY(height) (height*ScaleY_Num)
+
+#define UIFONT_SYS(fontsize) [UIFont systemFontOfSize:(fontsize)]
+
+
+
+#define C000000 HEXCOLOR(0x000000)
+#define C222222 HEXCOLOR(0x222222)
+#define C333333 HEXCOLOR(0x333333)
+#define C444444 HEXCOLOR(0x444444)
+#define C666666 HEXCOLOR(0x666666)
+#define C888888 HEXCOLOR(0x888888)
+#define C999999 HEXCOLOR(0x999999)
+#define CCCCCC HEXCOLOR(0xCCCCCC)
+#define EEEEEE HEXCOLOR(0xEEEEEE)
+#define FFFFFF HEXCOLOR(0xFFFFFF)
+
+#define F8F8FF  HEXCOLOR(0xF8F8FF)
+#define C319867 HEXCOLOR(0x319867)
+#define D7D7D7 HEXCOLOR(0xD7D7D7)
+#define C252525 HEXCOLOR(0x252525)
+#define F12020 HEXCOLOR(0xF12020)
+#define C6781E6 HEXCOLOR(0xC6781E6)
+#define F5F5F5 HEXCOLOR(0xF5F5F5)
+#define C339967 HEXCOLOR(0x339967)
+#define C10A822 HEXCOLOR(0x10A822)
+#define C9C9C9 HEXCOLOR(0xC9C9C9)
+#define FCE5D2 HEXCOLOR(0xFCE5D2)
+#define C1B7FE5 HEXCOLOR(0x1B7FE5)
+#define FF1493 HEXCOLOR(0xFF1493)
+#define C6495ED HEXCOLOR(0x6495ED)
+#define C297952 HEXCOLOR(0x297952)
+#define F7F7F7 HEXCOLOR(0xF7F7F7)
+#define C348D61 HEXCOLOR(0x348D61)
+#define C5B62EF HEXCOLOR(0x5B62EF)
+
+#define C707070 HEXCOLOR(0x707070)
+
+
+
+
+
+
+
+
+//头文件
+#import "UIView+WZHExtension.h"
+#import "UIImageView+WZHPlayGIF.h"
+#import "WZHChangeStrTool.h"
+#import "WZHEmotionView.h"
+#import "UIImage+WZHExtension.h"
+
+#endif
+
+
+///emotionView
+#define EMOJI_KEYBOARD_HEIGHT (4 * IPHONE_WIDTH * 0.0875 +(3 + 1) * ((IPHONE_WIDTH - 7 * IPHONE_WIDTH * 0.0875 ) / 8) + 20)
+#define emotionUpFrame CGRectMake(0, IPHONE_HEIGHT - NAV_HEIGHT - (EMOJI_KEYBOARD_HEIGHT), IPHONE_WIDTH, EMOJI_KEYBOARD_HEIGHT)
+#define emotionDownFrame CGRectMake(0, IPHONE_HEIGHT - NAV_HEIGHT, IPHONE_WIDTH, 0)
+#define emotionTipTime 0.25
+
+
+///toolbar
+#define toobarH 35 * ScaleY_Num
+#define TextViewW IPHONE_WIDTH - ScaleX_Num * 55
+#define TextViewH ScaleX_Num * 25
+#define emotionBtnW ScaleX_Num * 34
+#define emotionBtnH ScaleX_Num * 34
+#define emotionBtnX IPHONE_WIDTH -ScaleX_Num * 40
+#define toolBarFrameDown CGRectMake(0, IPHONE_HEIGHT - NAV_HEIGHT  - toobarH, IPHONE_WIDTH, toobarH)
+#define toolBarFrameUPBaseEmotion CGRectMake(0, IPHONE_HEIGHT - NAV_HEIGHT - toobarH - EMOJI_KEYBOARD_HEIGHT, IPHONE_WIDTH, toobarH)
+
+
+
+
+
+
+
+
+
+
+
