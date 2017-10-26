@@ -1,10 +1,10 @@
 
 //
 //  AKBaseWithBaseViewController.m
-//  WebPageMaster
+//  
 //
 //  Created by 吳梓杭 on 2017/6/28.
-//  Copyright © 2017年 Guangzhou Ankai Information Technology Co., Ltd. All rights reserved.
+//  Copyright © 2017年 吳梓杭. All rights reserved.
 //
 
 #import "AKBaseWithBaseViewController.h"
