@@ -20,5 +20,3 @@
 @property (nonatomic,strong)AVAudioPlayer * player;
 
 @end
-
-
