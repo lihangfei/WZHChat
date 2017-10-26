@@ -14,7 +14,7 @@
                      三期：至2017年年底（敬请期待，增添视频功能，gif图片播放）
 
 # 项目演示
-![image](http://wx3.sinaimg.cn/large/005OnOYcly1fkvlscvkzjg308w0frx6w.gif)
+http://wx3.sinaimg.cn/large/005OnOYcly1fkvlscvkzjg308w0frx6w.gif
 
 # 部分截图
 ![](http://wx4.sinaimg.cn/mw1024/005OnOYcly1fkvlrsptu6j30yi1pcasq.jpg) ![](http://wx4.sinaimg.cn/mw1024/005OnOYcly1fkvlrmzsvjj30yi1pc7f9.jpg)
