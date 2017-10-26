@@ -11,5 +11,10 @@
 @interface UIImage (WZHExtension)
 
 + (UIImage *)createImageWithColor:(UIColor*)color;
-
+/**
+ *  返回一张可以随意拉伸不变形的图片
+ *  @param name 图片名字
+ */
++(UIImage *)stretchableImageWithImgae:(NSString *)name;
 @end
+

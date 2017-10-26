@@ -31,3 +31,4 @@ typedef enum : NSUInteger {
 //@property(nonatomic, assign) WZHEmotionType emotionType;
 
 @end
+

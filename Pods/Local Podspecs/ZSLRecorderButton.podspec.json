@@ -1,0 +1,33 @@
+{
+  "name": "ZSLRecorderButton",
+  "version": "0.1.0",
+  "summary": "A short description of ZSLRecorderButton.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/ZSLRecorderButton",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Nihility-Ming": "biweiming@zhaosuliao.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/ZSLRecorderButton.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "7.0"
+  },
+  "xcconfig": {
+    "ENABLE_BITCODE": "No"
+  },
+  "requires_arc": "ZSLRecorderButton/Classes/*.{h,m}",
+  "source_files": "ZSLRecorderButton/Classes/**/*.{h,m}",
+  "resource_bundles": {
+    "ZSLRecorderButton": [
+      "ZSLRecorderButton/Classes/*.xib",
+      "ZSLRecorderButton/Assets/*.png"
+    ]
+  },
+  "vendored_libraries": "ZSLRecorderButton/Classes/arm/**/*.a"
+}

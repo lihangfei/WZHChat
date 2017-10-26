@@ -77,7 +77,7 @@ static NSDictionary *_emojiStaticImages;
 
 //初始化一些数据，计算按钮大小，根据输入框的字体
 - (void)setSomeProperty {
-
+    
     if (!self.IputView.font)
     {self.IputView.font = [UIFont systemFontOfSize:17];}
     self.font = self.IputView.font;
@@ -86,9 +86,8 @@ static NSDictionary *_emojiStaticImages;
 
 //初始化方法
 - (instancetype)initWithFrame:(CGRect)frame {
-    
-   self = [super initWithFrame:frame];
-    if (self) {
+    if (self = [super initWithFrame:frame]) {
+        NSLog(@"self.number == %@",self.number);
         [self initEmojiDatas];
         //创建滚动视图
         [self creatScorllView];
@@ -102,6 +101,7 @@ static NSDictionary *_emojiStaticImages;
         [self ceartPageViewFiveBtns];
         [self ceartPageViewSixBtns];
         [self ceartPageViewSeveneBtns];
+        [self ceartPageViewEightBtns];
         //创建pagecontrol
         [self creatPageControl];
         //创建底部按钮栏
@@ -132,39 +132,27 @@ static NSDictionary *_emojiStaticImages;
 
 //创建btnsBar
 - (void)creatBottomBar {
-    
-    [self cteateBottomBtnBar];
-    
-    [self createSendBtn];
-    
+    //    [self cteateBottomBtnBar];
+    //    [self createSendBtn];
     [self createScrollBtnsView];
 }
 
 //创建底部按钮栏
 - (void)cteateBottomBtnBar {
-
+    
     UIButton *btnsBar = [[UIButton alloc]initWithFrame:CGRectMake(0, self.emotonViewPageOne.frame.size.height + 15, IPHONE_WIDTH, emotionW + 5)];
     
     self.btnsBar = btnsBar;
     
     btnsBar.userInteractionEnabled = YES;
     
-    UIScrollView *btnsScrollView = [[UIScrollView alloc]init];
-    
-    btnsBar.backgroundColor = [UIColor whiteColor];
-    
-    [btnsBar addSubview:btnsScrollView];
-    
-    btnsBar.userInteractionEnabled = YES;
-    
     [self addSubview:btnsBar];
     
-    btnsBar.backgroundColor = EEEEEE;
 }
 
 // 发送按钮
 - (void)createSendBtn {
-
+    
     UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_WIDTH * 6 / 7, 0, IPHONE_WIDTH / 7, _btnsBar.frame.size.height)];
     
     [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
@@ -192,6 +180,7 @@ static NSDictionary *_emojiStaticImages;
     [sendBtn addSubview:lineView];
     
     [_btnsBar addSubview:sendBtn];
+    
 }
 
 //创建滚动按钮条
@@ -199,7 +188,7 @@ static NSDictionary *_emojiStaticImages;
     
     self.scrollBtnsView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH * 6 / 7, emotionW + 5)];
     
-    self.scrollBtnsView.backgroundColor = [UIColor whiteColor];
+    self.scrollBtnsView.backgroundColor = EEEEEE;
     
     [self.btnsBar addSubview:self.scrollBtnsView];
     //创建表情切换按钮
@@ -208,14 +197,14 @@ static NSDictionary *_emojiStaticImages;
 
 //创建不同类型的表情按钮
 - (void)createEmotionBtns {
-        UIButton *emotionBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH / 7, _btnsBar.frame.size.height)];
-        emotionBtn.backgroundColor = [UIColor whiteColor];
-        [emotionBtn addTarget:self action:@selector(emotionBtnsClick:) forControlEvents:UIControlEventTouchUpInside];
-        [emotionBtn setBackgroundImage:[UIImage createImageWithColor:C9C9C9] forState:UIControlStateSelected];
-          emotionBtn.selected = YES;
-            self.emotionBtn = emotionBtn;
-            self.emojiBtn = emotionBtn;
-          [emotionBtn setImage:[UIImage imageNamed:@"compose_emoticonbutton_background"] forState:UIControlStateNormal];
+    UIButton *emotionBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH / 7, _btnsBar.frame.size.height)];
+    emotionBtn.backgroundColor = [UIColor whiteColor];
+    [emotionBtn addTarget:self action:@selector(emotionBtnsClick:) forControlEvents:UIControlEventTouchUpInside];
+    [emotionBtn setBackgroundImage:[UIImage createImageWithColor:C9C9C9] forState:UIControlStateSelected];
+    emotionBtn.selected = YES;
+    self.emotionBtn = emotionBtn;
+    self.emojiBtn = emotionBtn;
+    [emotionBtn setImage:[UIImage imageNamed:@"compose_emoticonbutton_background"] forState:UIControlStateNormal];
 }
 
 //创建表情按钮（多个页面的）
@@ -226,7 +215,7 @@ static NSDictionary *_emojiStaticImages;
     CGFloat space = (IPHONE_WIDTH - rowCount * emotionW) / (rowCount + 1);
     
     for (int i = 0; i < emojiCount; i ++) {
-    
+        
         row = i / rowCount + 1;
         
         UIButton *btn = [[UIButton alloc]init];
@@ -258,8 +247,24 @@ static NSDictionary *_emojiStaticImages;
             
             [btn addTarget:self action:@selector(insertEmoji:) forControlEvents:UIControlEventTouchUpInside];
         }
-         [self.emotonViewPageOne addSubview:btn];
+        [self.emotonViewPageOne addSubview:btn];
+        
     }
+    UIButton *btnsBar = [[UIButton alloc]initWithFrame:CGRectMake(0, rows * emotionW +(rows + 1) * self.gap, IPHONE_WIDTH, emotionW + 5)];
+    self.btnsBar = btnsBar;
+    btnsBar.userInteractionEnabled = YES;
+    [self.emotonViewPageOne addSubview:btnsBar];
+    
+    UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_WIDTH * 6 / 7, 0, IPHONE_WIDTH / 7, _btnsBar.frame.size.height)];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    sendBtn.tag = 3456;
+    [sendBtn addTarget:self action:@selector(emotionBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [sendBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [sendBtn setBackgroundImage:[UIImage createImageWithColor:EEEEEE] forState:UIControlStateNormal];
+    
+    self.sendBtn = sendBtn;
+    [_btnsBar addSubview:sendBtn];
 }
 
 - (void)ceartPageViewTwoBtns {
@@ -304,6 +309,21 @@ static NSDictionary *_emojiStaticImages;
         
         [self.emotonViewPageTwo addSubview:btn];
     }
+    UIButton *btnsBar = [[UIButton alloc]initWithFrame:CGRectMake(0, rows * emotionW +(rows + 1) * self.gap, IPHONE_WIDTH, emotionW + 5)];
+    self.btnsBar = btnsBar;
+    btnsBar.userInteractionEnabled = YES;
+    [self.emotonViewPageTwo addSubview:btnsBar];
+    
+    UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_WIDTH * 6 / 7, 0, IPHONE_WIDTH / 7, _btnsBar.frame.size.height)];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    sendBtn.tag = 3456;
+    [sendBtn addTarget:self action:@selector(emotionBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [sendBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [sendBtn setBackgroundImage:[UIImage createImageWithColor:EEEEEE] forState:UIControlStateNormal];
+    
+    self.sendBtn = sendBtn;
+    [_btnsBar addSubview:sendBtn];
 }
 
 - (void)ceartPageViewThreeBtns {
@@ -346,6 +366,21 @@ static NSDictionary *_emojiStaticImages;
         }
         [self.emotonViewPageThree addSubview:btn];
     }
+    UIButton *btnsBar = [[UIButton alloc]initWithFrame:CGRectMake(0, rows * emotionW +(rows + 1) * self.gap, IPHONE_WIDTH, emotionW + 5)];
+    self.btnsBar = btnsBar;
+    btnsBar.userInteractionEnabled = YES;
+    [self.emotonViewPageThree addSubview:btnsBar];
+    
+    UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_WIDTH * 6 / 7, 0, IPHONE_WIDTH / 7, _btnsBar.frame.size.height)];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    sendBtn.tag = 3456;
+    [sendBtn addTarget:self action:@selector(emotionBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [sendBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [sendBtn setBackgroundImage:[UIImage createImageWithColor:EEEEEE] forState:UIControlStateNormal];
+    
+    self.sendBtn = sendBtn;
+    [_btnsBar addSubview:sendBtn];
 }
 
 - (void)ceartPageViewFourBtns {
@@ -390,12 +425,27 @@ static NSDictionary *_emojiStaticImages;
             [btn addTarget:self action:@selector(insertEmoji:) forControlEvents:UIControlEventTouchUpInside];
         }
         
- //       if (i >= 12) {
-//            btn.userInteractionEnabled = NO;
-//        }
+        //        if (i >= 12) {
+        //            btn.userInteractionEnabled = NO;
+        //        }
         
         [self.emotonViewPageFour addSubview:btn];
     }
+    UIButton *btnsBar = [[UIButton alloc]initWithFrame:CGRectMake(0, rows * emotionW +(rows + 1) * self.gap, IPHONE_WIDTH, emotionW + 5)];
+    self.btnsBar = btnsBar;
+    btnsBar.userInteractionEnabled = YES;
+    [self.emotonViewPageFour addSubview:btnsBar];
+    
+    UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_WIDTH * 6 / 7, 0, IPHONE_WIDTH / 7, _btnsBar.frame.size.height)];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    sendBtn.tag = 3456;
+    [sendBtn addTarget:self action:@selector(emotionBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [sendBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [sendBtn setBackgroundImage:[UIImage createImageWithColor:EEEEEE] forState:UIControlStateNormal];
+    
+    self.sendBtn = sendBtn;
+    [_btnsBar addSubview:sendBtn];
 }
 -(void)ceartPageViewFiveBtns{
     int row = 1;
@@ -436,7 +486,21 @@ static NSDictionary *_emojiStaticImages;
         }
         [self.emotonViewPageFive addSubview:btn];
     }
-
+    UIButton *btnsBar = [[UIButton alloc]initWithFrame:CGRectMake(0, rows * emotionW +(rows + 1) * self.gap, IPHONE_WIDTH, emotionW + 5)];
+    self.btnsBar = btnsBar;
+    btnsBar.userInteractionEnabled = YES;
+    [self.emotonViewPageFive addSubview:btnsBar];
+    
+    UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_WIDTH * 6 / 7, 0, IPHONE_WIDTH / 7, _btnsBar.frame.size.height)];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    sendBtn.tag = 3456;
+    [sendBtn addTarget:self action:@selector(emotionBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [sendBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [sendBtn setBackgroundImage:[UIImage createImageWithColor:EEEEEE] forState:UIControlStateNormal];
+    
+    self.sendBtn = sendBtn;
+    [_btnsBar addSubview:sendBtn];
 }
 -(void)ceartPageViewSixBtns{
     int row = 1;
@@ -477,7 +541,21 @@ static NSDictionary *_emojiStaticImages;
         }
         [self.emotonViewPageSix addSubview:btn];
     }
+    UIButton *btnsBar = [[UIButton alloc]initWithFrame:CGRectMake(0, rows * emotionW +(rows + 1) * self.gap, IPHONE_WIDTH, emotionW + 5)];
+    self.btnsBar = btnsBar;
+    btnsBar.userInteractionEnabled = YES;
+    [self.emotonViewPageSix addSubview:btnsBar];
     
+    UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_WIDTH * 6 / 7, 0, IPHONE_WIDTH / 7, _btnsBar.frame.size.height)];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    sendBtn.tag = 3456;
+    [sendBtn addTarget:self action:@selector(emotionBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [sendBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [sendBtn setBackgroundImage:[UIImage createImageWithColor:EEEEEE] forState:UIControlStateNormal];
+    
+    self.sendBtn = sendBtn;
+    [_btnsBar addSubview:sendBtn];
 }
 -(void)ceartPageViewSeveneBtns{
     int row = 1;
@@ -518,7 +596,41 @@ static NSDictionary *_emojiStaticImages;
         }
         [self.emotonViewPageSeven addSubview:btn];
     }
+    UIButton *btnsBar = [[UIButton alloc]initWithFrame:CGRectMake(0, rows * emotionW +(rows + 1) * self.gap, IPHONE_WIDTH, emotionW + 5)];
+    self.btnsBar = btnsBar;
+    btnsBar.userInteractionEnabled = YES;
+    [self.emotonViewPageSeven addSubview:btnsBar];
     
+    UIButton *sendBtn = [[UIButton alloc]initWithFrame:CGRectMake(IPHONE_WIDTH * 6 / 7, 0, IPHONE_WIDTH / 7, _btnsBar.frame.size.height)];
+    [sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+    sendBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    sendBtn.tag = 3456;
+    [sendBtn addTarget:self action:@selector(emotionBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
+    [sendBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [sendBtn setBackgroundImage:[UIImage createImageWithColor:EEEEEE] forState:UIControlStateNormal];
+    
+    self.sendBtn = sendBtn;
+    [_btnsBar addSubview:sendBtn];
+}
+-(void)ceartPageViewEightBtns{
+    NSMutableArray * moreImageArray = [NSMutableArray arrayWithObjects:@"icon_Album",@"icon_Photograph", nil];
+    NSMutableArray * moreTitleArray = [NSMutableArray arrayWithObjects:@"相册",@"拍摄", nil];
+    for (int i = 0; i < moreImageArray.count; i ++) {
+        UIButton * btn_moreWay = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.moreWayButton = btn_moreWay;
+        btn_moreWay.frame = CGRectMake((IPHONE_WIDTH - 4 * 40 * ScaleX_Num) / 5 + ((IPHONE_WIDTH - 4 * 40 * ScaleX_Num) / 5 + 40 * ScaleX_Num) * i , 30 * ScaleY_Num, 40 * ScaleX_Num, 40 * ScaleY_Num);
+        [btn_moreWay setImage:[UIImage imageNamed:moreImageArray[i]] forState:UIControlStateNormal];
+        [btn_moreWay addTarget:self action:@selector(clickMoreWayBtn:) forControlEvents:UIControlEventTouchUpInside];
+        btn_moreWay.tag = 901 + i;
+        [self.emotonViewPageEight addSubview:btn_moreWay];
+        
+        UILabel * lab_titile = [[UILabel alloc] initWithFrame:CGRectMake((IPHONE_WIDTH - 4 * 40 * ScaleX_Num) / 5 + ((IPHONE_WIDTH - 4 * 40 * ScaleX_Num) / 5 + 40 * ScaleX_Num) * i , CGRectGetMaxY(btn_moreWay.frame) + 5 * ScaleY_Num, 40 * ScaleX_Num, 14 * ScaleY_Num)];
+        lab_titile.text = moreTitleArray[i];
+        lab_titile.textColor = CCCCCC;
+        lab_titile.font = UIFONT_SYS(14);
+        lab_titile.textAlignment = NSTextAlignmentCenter;
+        [self.emotonViewPageEight addSubview:lab_titile];
+    }
 }
 
 
@@ -528,7 +640,7 @@ static NSDictionary *_emojiStaticImages;
     //表情展示视图
     for (int i = 0; i < pages; i ++) {
         
-        UIImageView *emotionPageView = [[UIImageView alloc]initWithFrame:CGRectMake(i * IPHONE_WIDTH, 0, IPHONE_WIDTH, rows * emotionW +(rows + 1) * self.gap)];
+        UIImageView *emotionPageView = [[UIImageView alloc]initWithFrame:CGRectMake(i * IPHONE_WIDTH, 0, IPHONE_WIDTH, rows * emotionW +(rows + 1) * self.gap + emotionW + 5)];
         
         emotionPageView.backgroundColor = EEEEEE;
         
@@ -568,7 +680,7 @@ static NSDictionary *_emojiStaticImages;
 - (void)creatScorllView {
     
     //滚动视图
-    UIScrollView *pageView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, rows * emotionW +(rows + 1) * self.gap)];
+    UIScrollView *pageView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, rows * emotionW +(rows + 1) * self.gap+ emotionW + 5)];
     
     pageView.backgroundColor = [UIColor clearColor];
     
@@ -578,7 +690,11 @@ static NSDictionary *_emojiStaticImages;
     
     pageView.showsHorizontalScrollIndicator = NO;
     
-    pageView.contentSize = CGSizeMake(IPHONE_WIDTH * pages, rows * emotionW +(rows + 1) * self.gap);
+    pageView.contentSize = CGSizeMake(IPHONE_WIDTH * pages, rows * emotionW +(rows + 1) * self.gap+ emotionW + 5);
+    
+    //    if (self.moreBool == YES) {
+    //        self.pageView.contentOffset = CGPointMake(IPHONE_WIDTH * (pages - 1), 0);
+    //    }
     
     pageView.delaysContentTouches = YES;
     
@@ -587,6 +703,7 @@ static NSDictionary *_emojiStaticImages;
     self.pageView = pageView;
     
     [self addSubview:pageView];
+    
 }
 
 //pagecontrol
@@ -609,13 +726,14 @@ static NSDictionary *_emojiStaticImages;
     self.pageControl = pagecontrol;
     
     [self addSubview:pagecontrol];
+    
 }
 
 //点击表情时，插入图片到输入框
 - (void)insertEmoji:(UIButton *)btn {
     //创建自定义的附件
     WZHTextAttachment *emojiTextAttachment = [WZHTextAttachment new];
-//    给附件设置tag值(用来对照图片；通过前边从plist中加载到的数组_emojiTags中取到按钮对应的字符串)
+    //    给附件设置tag值(用来对照图片；通过前边从plist中加载到的数组_emojiTags中取到按钮对应的字符串)
     emojiTextAttachment.emojiTag = _emojiTags[(NSUInteger) btn.tag - 1];
     
     NSString *imageName;
@@ -632,7 +750,7 @@ static NSDictionary *_emojiStaticImages;
     }
     //给附件设置图片
     emojiTextAttachment.image = [UIImage imageNamed:imageName];
-//    给附件设置尺寸,会在自定义附件内部重写方法用这个值来设置附件尺寸
+    //    给附件设置尺寸,会在自定义附件内部重写方法用这个值来设置附件尺寸
     emojiTextAttachment.emojiSize = CGSizeMake(_EMOJI_MAX_SIZE, _EMOJI_MAX_SIZE);
     //textview插入富文本，用创建的附件初始化富文本
     [_IputView.textStorage insertAttributedString:[NSAttributedString attributedStringWithAttachment:emojiTextAttachment] atIndex:_IputView.selectedRange.location];
@@ -644,7 +762,7 @@ static NSDictionary *_emojiStaticImages;
 }
 
 - (void)resetTextStyle {
-
+    
     NSRange wholeRange = NSMakeRange(0, _IputView.textStorage.length);
     
     [_IputView.textStorage removeAttribute:NSFontAttributeName range:wholeRange];
@@ -668,7 +786,7 @@ static NSDictionary *_emojiStaticImages;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     if (self.emojiBtn.selected) {
-       
+        
         self.pageControl.numberOfPages = 7;
         
         self.pageControl.currentPage = (int)(scrollView.contentOffset.x / scrollView.frame.size.width + 0.5);
@@ -692,7 +810,7 @@ static NSDictionary *_emojiStaticImages;
 - (void)emotionBtnDidClick:(UIButton *)btn {
     
     if ([self.delegate respondsToSelector:@selector(emotionView_sBtnDidClick:)]) {
-    
+        
         [self.delegate emotionView_sBtnDidClick:btn];
     }
 }
@@ -716,13 +834,19 @@ static NSDictionary *_emojiStaticImages;
     
     btn.selected = !btn.selected;
     
-        CGPoint point = self.pageView.contentOffset;
-        
-        point.x = 0;
-        
-        self.pageView.contentOffset = point;
-        
+    CGPoint point = self.pageView.contentOffset;
+    
+    point.x = 0;
+    
+    self.pageView.contentOffset = point;
+    
+}
+-(void)clickMoreWayBtn:(UIButton *)sender{
+    if ([self.delegate respondsToSelector:@selector(MoreWayBtnDidClicked:)]) {
+        [self.delegate MoreWayBtnDidClicked:sender];
+    }
 }
 
 
 @end
+

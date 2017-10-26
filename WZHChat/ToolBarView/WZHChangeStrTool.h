@@ -18,3 +18,4 @@
 + (NSString *)changeTextToHtmlStrWithText:(NSString *)text;
 
 @end
+

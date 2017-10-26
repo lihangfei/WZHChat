@@ -8,8 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "AKBaseWithBaseViewController.h"
+#import <AVFoundation/AVFoundation.h>
 
 
 @interface WZHChtaDetailViewController :AKBaseWithBaseViewController
 
+@property (nonatomic,strong)AVAudioSession * session;
+@property (nonatomic,strong)AVAudioRecorder * record;
+@property (nonatomic,assign)NSTimer * timer;
+@property (nonatomic,copy)NSString *filePath;
+@property (nonatomic,strong)AVAudioPlayer * player;
+
 @end
+
+

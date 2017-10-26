@@ -1,9 +1,9 @@
 //
 //  WZHMoreView.h
-//  WZHChat
+//  chatWithEmotion
 //
-//  Created by 吳梓杭 on 2017/10/18.
-//  Copyright © 2017年 吳梓杭. All rights reserved.
+//  Created by 吳梓杭 on 2017/10/17.
+//  Copyright © 2017年 刘全水. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -21,3 +21,5 @@
 @property(strong,nonatomic)UIButton * moreWayButton;
 
 @end
+
+

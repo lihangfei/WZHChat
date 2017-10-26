@@ -21,10 +21,13 @@
 
 @end
 
-@interface WZHToolbarView : UIImageView 
+@interface WZHToolbarView : UIImageView
 
 ///toolbar代理
 @property(assign,nonatomic)id <WZHToolBarDelegate> delegate;
+
+@property(nonatomic,strong)UIView * toolBarView;
+@property(nonatomic,strong)UIButton * btn_recycle;
 
 ///toolbar上面的输入框
 @property(strong,nonatomic)UITextView *textView;
@@ -39,3 +42,4 @@
 @property(strong,nonatomic)UIButton * toolBarMoreBtn;
 
 @end
+

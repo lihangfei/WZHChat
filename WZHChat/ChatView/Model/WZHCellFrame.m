@@ -11,45 +11,34 @@
 
 @implementation WZHCellFrame
 
--(void)setMessage:(WZHChatMessage *)message
-{
+-(void)setMessage:(WZHChatMessage *)message{
     _message = message;
+    //匹对字符串，获取富文本
+    NSMutableAttributedString *text = [WZHChangeStrTool changeStrWithStr:message.text Font:[UIFont systemFontOfSize:16] TextColor:C333333];
+    //文字自适应
+    CGSize TextSize = [text boundingRectWithSize:CGSizeMake(IPHONE_WIDTH - 122 * ScaleX_Num, IPHONE_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
+    self.message.attributedText = (NSMutableAttributedString*)text;
+    NSString *htmlStr = [WZHChangeStrTool changeTextToHtmlStrWithText:message.text];
+    self.htmlURlStr = htmlStr;
+    NSLog(@"htmlStr ===== %@\nmessage.text ===== %@",htmlStr,message.text);
     
-    if ([message.type isEqualToString:@"message"]) {
-        
-//        匹对字符串，获取富文本
-        NSMutableAttributedString *text = [WZHChangeStrTool changeStrWithStr:message.text Font:[UIFont systemFontOfSize:20] TextColor:[UIColor blackColor]];
-        CGSize maxsize = CGSizeMake(IPHONE_WIDTH - 20, MAXFLOAT);
-//        文字自适应
-        CGSize TextSize = [text boundingRectWithSize:maxsize options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-//        CGSize TextSize = [self getSizeWithFont:[UIFont systemFontOfSize:17] andText:message.text];
-
-        self.message.attributedText = (NSMutableAttributedString*)text;
-        
-        NSString *htmlStr = [WZHChangeStrTool changeTextToHtmlStrWithText:message.text];
-        
-        self.htmlURlStr = htmlStr;
-        
-        //计算控件frame
-        self.emotionLabelFrame = CGRectMake(10, 5, TextSize.width  , TextSize.height);
-        
-        //计算cell高度
-        self.cellHeight = TextSize.height + 10;
+    //匹对字符串，获取富文本
+    NSMutableAttributedString *text1 = [WZHChangeStrTool changeStrWithStr:htmlStr Font:[UIFont systemFontOfSize:16] TextColor:C333333];
+    //文字自适应
+    CGSize TextSize1 = [text1 boundingRectWithSize:CGSizeMake(IPHONE_WIDTH - 122 * ScaleX_Num, IPHONE_HEIGHT) options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
     
+    //计算控件frame
+    if ([self.guestStr intValue] == 1) {
+        self.emotionLabelFrame = CGRectMake(20 * ScaleX_Num, 8 * ScaleX_Num, TextSize1.width, TextSize1.height);
+    }else{
+        self.emotionLabelFrame = CGRectMake(9 * ScaleX_Num, 8 * ScaleX_Num, TextSize1.width, TextSize1.height);
     }
+    //计算cell高度
+    self.cellHeight = TextSize.height + 10;
+    NSLog(@"%f\n %f",text.size.width,text.size.height);
+    self.messageWidth = TextSize1.width;
+    self.messageHight = TextSize1.height;
 }
 
-//动态计算size方法
-- (CGSize )getSizeWithFont:(UIFont *)font andText:(NSString *)text{
-    
-    //动态计算label的宽度
-    NSDictionary *dict = @{NSFontAttributeName:font};
-    
-    CGSize maxsize = CGSizeMake(IPHONE_WIDTH - 20 , MAXFLOAT);
-    
-    CGSize size = [text boundingRectWithSize:maxsize options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
-    
-    return size;
-}
 
 @end

@@ -16,6 +16,9 @@
 -(void)emotionView_sBtnDidClick:(UIButton *)btn;
 ///gif表情的代理事件！
 -(void)gifBtnClick:(UIButton *)btn;
+///代理方法，点击表情按钮触发方法
+-(void)MoreWayBtnDidClicked:(UIButton *)moreWayBtn;
+
 
 @end
 
@@ -30,5 +33,9 @@
 
 @property(assign,nonatomic) id <WZHEmotionViewdelegate> delegate;
 
+@property(strong,nonatomic)UIButton * moreWayButton;
+
+@property(nonatomic,assign)NSString * number;
 
 @end
+

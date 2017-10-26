@@ -31,7 +31,7 @@
         [btn_voice setImage:[UIImage imageNamed:@"keybordBtton"] forState:UIControlStateSelected];
         [btn_voice addTarget:self action:@selector(clickVoiceBtton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn_voice];
-    
+        
         UITextView *textView = [[UITextView alloc]initWithFrame:CGRectMake(CGRectGetMaxX(btn_voice.frame) + 5 * ScaleX_Num, Vgap, IPHONE_WIDTH - btn_voice.size.width - 65 * ScaleX_Num, TextViewH)];
         self.textView = textView;
         textView.backgroundColor = [UIColor whiteColor];
@@ -39,7 +39,7 @@
         textView.layer.cornerRadius = 8;
         textView.layer.borderWidth = 0.5f;
         textView.scrollEnabled = YES;
-        [_textView scrollRangeToVisible:NSMakeRange(_textView.text.length, 1)]; 
+        [_textView scrollRangeToVisible:NSMakeRange(_textView.text.length, 1)];
         textView.layer.borderColor = C707070.CGColor;
         [self addSubview:textView];
         
@@ -57,7 +57,7 @@
         [btn_more setImage:[UIImage imageNamed:@"moreBtton"] forState:UIControlStateNormal];
         [btn_more addTarget:self action:@selector(clickMoreBtton:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn_more];
-
+        
     }
     return self;
 }
@@ -81,3 +81,4 @@
 }
 
 @end
+

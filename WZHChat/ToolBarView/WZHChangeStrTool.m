@@ -38,7 +38,7 @@ static NSMutableAttributedString *_resultStr;
     
     // 读取并加载对照表
     NSString *path = [[NSBundle mainBundle] pathForResource:@"WZHEmoji" ofType:@"plist"];
-
+    
     _emojiImages = [NSDictionary dictionaryWithContentsOfFile:path];
     
     //设置文本参数（行间距，文本颜色，字体大小）
@@ -78,21 +78,21 @@ static NSMutableAttributedString *_resultStr;
         NSMutableDictionary *record = [NSMutableDictionary dictionary];
         //创建附件
         WZHTextAttachment *attachMent = [[WZHTextAttachment alloc]init];
-//        设置尺寸
+        //        设置尺寸
         attachMent.emojiSize = CGSizeMake(_emotionSize.height, _emotionSize.height);
-//        取到当前的表情
+        //        取到当前的表情
         NSTextCheckingResult *match = [_matches objectAtIndex:i];
-//        取出表情字符串在文本中的位置
+        //        取出表情字符串在文本中的位置
         NSRange matchRange = [match range];
         
         NSString *tagString = [_string substringWithRange:matchRange];
-//        拿出表情对应的图片名字
+        //        拿出表情对应的图片名字
         NSString *imageName = [_emojiImages objectForKey:tagString];
-//        判断是否有这个图，有就继续没有就跳出当次循环
+        //        判断是否有这个图，有就继续没有就跳出当次循环
         if (imageName == nil || imageName.length == 0) continue;
         //这里有个问题，需要先判断是否有图片，没有图片的话应该不操作，因为现在换用html处理，先不改！
         NSString *cheakStr = [imageName substringWithRange:NSMakeRange(1, 2)];
-       // 不用管这个判断，操作就是要取出图片，给附件设置图片
+        // 不用管这个判断，操作就是要取出图片，给附件设置图片
         if ([cheakStr intValue] > 140) {
             
             NSString *path = [[NSBundle mainBundle] pathForResource:imageName ofType:@"gif"];
@@ -105,10 +105,10 @@ static NSMutableAttributedString *_resultStr;
             
         }else {
             
-            attachMent.image = [UIImage imageNamed:imageName]; 
+            attachMent.image = [UIImage imageNamed:imageName];
         }
         
-//        然后把表情富文本和对应的位置存到字典中，再把字典存到数组中，这样就得到一个字典数组。
+        //        然后把表情富文本和对应的位置存到字典中，再把字典存到数组中，这样就得到一个字典数组。
         NSAttributedString *imageStr = [NSAttributedString attributedStringWithAttachment:attachMent];
         
         [record setObject:[NSValue valueWithRange:matchRange] forKey:@"range"];
@@ -144,7 +144,7 @@ static NSMutableAttributedString *_resultStr;
 
 
 + (NSString *)changeTextToHtmlStrWithText:(NSString *)text {
-
+    
     _string = text;
     // 读取并加载对照表
     NSString *path = [[NSBundle mainBundle] pathForResource:@"WZHEmoji" ofType:@"plist"];
@@ -155,7 +155,7 @@ static NSMutableAttributedString *_resultStr;
 }
 
 + (NSString *)getHtmlStrimg {
-
+    
     [self executeMatch];
     
     __block NSMutableString *htmlStr = [NSMutableString stringWithString:_string];
@@ -182,12 +182,13 @@ static NSMutableAttributedString *_resultStr;
 
 + (NSString *)createEmotionShortStrWithImageName:(NSString *)imageName {
     NSString *type = [NSString string];
-    type = @"png";
-//    NSString *path = [[NSBundle mainBundle] pathForResource:imageName ofType:type];
-//    NSURL *imageUrl = [NSURL fileURLWithPath:path];
-//    NSString *result = [NSString stringWithFormat:@"<img src='%@' height='%f' width='%f'>",imageUrl.absoluteString,_emotionSize.height,_emotionSize.height];
-//    return result;
+    type = @"TT";
+    //    NSString *path = [[NSBundle mainBundle] pathForResource:imageName ofType:type];
+    //    NSURL *imageUrl = [NSURL fileURLWithPath:path];
+    //    NSString *result = [NSString stringWithFormat:@"<img src='%@' height='%f' width='%f'>",imageUrl.absoluteString,_emotionSize.height,_emotionSize.height];
+    //    return result;
     return type;
 }
 
 @end
+

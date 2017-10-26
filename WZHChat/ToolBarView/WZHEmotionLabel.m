@@ -8,11 +8,10 @@
 
 #import "WZHEmotionLabel.h"
 #import <ImageIO/ImageIO.h>
-#import "UIImageView+WZHPlayGIF.h"
-#import "UIImage+WZHGIF.h"
 
 @implementation WZHEmotionLabel
 
 
 
 @end
+

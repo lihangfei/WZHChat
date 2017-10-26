@@ -34,6 +34,29 @@
 
 #define UIFONT_SYS(fontsize) [UIFont systemFontOfSize:(fontsize)]
 
+#define random_Num  (arc4random() % 2)
+
+
+#define TCP_HOST      TCP_HOST01
+#define TCP_HOST01     @"192.168.1.18"     //局域网IP
+#define TCP_HOST02     @"202.65.219.3"     //广域网IP
+
+#define InterHeard    SERVER_01            //IP服务器环境
+#define SERVER_01     @"http://192.168.1.18/ak-sw-wyt/"        //局域网环境
+#define SERVER_02     @"http://www.ad-web.com/"                //广域网环境
+
+#define FILE_INTER    @"http://photo.ad-web.com/"            //广域网文件存储路径
+
+#define ACCOUNTNUM   AccountNum_01    //测试号
+#define   AccountNum_01     @"18888888888"
+#define   AccountNum_02     @"18866668888"
+#define   AccountNum_03     @"18888886666"
+#define   AccountNum_04     @"18819175391"    //子用户
+#define   AccountNum_05     @"18819175390"    //子用户
+#define   AccountNum_06     @"18378313860"    //管理员
+#define   AccountNum_07     @"15288019452"
+#define PASSWORD    @"123456"          //测试号密码
+
 
 
 #define C000000 HEXCOLOR(0x000000)
@@ -77,10 +100,18 @@
 
 //头文件
 #import "UIView+WZHExtension.h"
-#import "UIImageView+WZHPlayGIF.h"
 #import "WZHChangeStrTool.h"
 #import "WZHEmotionView.h"
 #import "UIImage+WZHExtension.h"
+#import "LLImagePicker.h"
+#import "NSString+extend.h"
+#import "NSDate+Category.h"
+#import "XLImageViewer.h"
+#import <PPNetworkHelper.h>
+#import <TZImagePickerController/TZImagePickerController.h>
+#import <TZImagePickerController/TZImageManager.h>
+#import <ZSLRecorderButton.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #endif
 
